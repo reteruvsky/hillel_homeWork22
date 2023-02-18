@@ -1,13 +1,11 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) throws IOException {
         DBFunctional functional = new DBFunctional();
-
-        BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to my Application!");
         System.out.println("Press \"1\" for add some User");
@@ -19,14 +17,12 @@ public class App {
         System.out.println("Press \"7\" for get User by first name");
         System.out.println("Press \"8\" for quit!");
 
-        boolean bool = true;
 
-        while (bool) {
+        while (true) {
             int index = 0;
-            String str = buf.readLine();
 
             try {
-                index = Integer.parseInt(str);
+                index = scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("Incorrect input data!");
                 break;
@@ -35,10 +31,10 @@ public class App {
             switch (index) {
                 case 1 -> {
                     System.out.println("Enter your User's data");
-                    functional.addUser(new Person(Integer.parseInt(buf.readLine()),
-                            buf.readLine(),
-                            buf.readLine(),
-                            Integer.parseInt(buf.readLine())));
+                    functional.addUser(new Person(scanner.nextInt(),
+                            scanner.nextLine(),
+                            scanner.nextLine(),
+                            scanner.nextInt()));
                 }
                 case 2 -> {
                     System.out.println("Let's get your Users.");
@@ -46,26 +42,28 @@ public class App {
                 }
                 case 3 -> {
                     System.out.println("Write the age please.");
-                    functional.getAllUsersByAge(Integer.parseInt(buf.readLine()));
+                    functional.getAllUsersByAge(scanner.nextInt());
                 }
                 case 4 -> {
                     System.out.println("Write ID of User please.");
-                    functional.deleteUser(Integer.parseInt(buf.readLine()));
+                    functional.deleteUser(scanner.nextInt());
                 }
                 case 5 -> {
                     System.out.println("Write the ID and age of User please");
-                    functional.updateDataUser(Integer.parseInt(buf.readLine()),
-                            Integer.parseInt(buf.readLine()));
+                    functional.updateDataUser(scanner.nextInt(),
+                            scanner.nextInt());
                 }
                 case 6 -> {
                     System.out.println("Write the ID of User please.");
-                    functional.getUserByID(Integer.parseInt(buf.readLine()));
+                    functional.getUserByID(scanner.nextInt());
                 }
                 case 7 -> {
                     System.out.println("Write the first name of User please.");
-                    functional.getUserByFirstName(buf.readLine());
+                    functional.getUserByFirstName(scanner.nextLine());
                 }
-                case 8 -> bool = false;
+                case 8 -> {
+                    return;
+                }
                 default -> System.out.println("You entered the wrong number!");
             }
         }

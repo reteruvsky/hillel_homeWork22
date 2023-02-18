@@ -68,7 +68,7 @@ public class DBFunctional {
         usersList.forEach(System.out::println);
     }
 
-    public void deleteUser(int id) {  //4
+    public void deleteUser(int id) { //4
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM person WHERE id = ?");
@@ -82,7 +82,7 @@ public class DBFunctional {
         System.out.println("The operation was successful");
     }
 
-    public void updateDataUser(int id, int age) {  //5
+    public void updateDataUser(int id, int age) { //5
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE person SET age = age + ? WHERE id = ?");
@@ -96,7 +96,7 @@ public class DBFunctional {
         }
     }
 
-    public void getUserByID(int id) {  //6
+    public void getUserByID(int id) { //6
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM person WHERE id = ?");
@@ -117,7 +117,7 @@ public class DBFunctional {
         }
     }
 
-    public void getUserByFirstName(String firstName) {  //7
+    public void getUserByFirstName(String firstName) { //7
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM person WHERE first_name = ? LIMIT 1");
